@@ -15,6 +15,8 @@ window.addEventListener("load", () => {
     document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement
         if (!isPressingQ || target.tagName !== "IMG") { return }
+        e.stopPropagation()
+        e.preventDefault()
 
         const clickedElSelector = finder(target)
         const tweetSelector = `article:has(${clickedElSelector})`
@@ -26,7 +28,7 @@ window.addEventListener("load", () => {
         console.log(tweetSelector)
         console.log(tweet)
 
-    })
+    }, true)
 
 
   console.log("content script loaded")
