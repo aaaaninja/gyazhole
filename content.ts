@@ -3,14 +3,14 @@ import querySelectorAllWithHas from "~polyfill-css-has"
 import type { PlasmoContentScript } from "plasmo"
 
 export const config: PlasmoContentScript = {
-  matches: ["<all_urls>"],
+  matches: ["https://*.twitter.com/*"],
   all_frames: true
 }
 
 window.addEventListener("load", () => {
     let isPressingQ = false // 任意のキーコンビネーションをやるため。
     document.addEventListener("keydown", e => isPressingQ = (e.key === "q"))
-    document.addEventListener("keyup", e => isPressingQ = !(e.key === "q"))
+    document.addEventListener("keyup", () => isPressingQ = false)
 
     document.addEventListener('click', (e) => {
         const target = e.target as HTMLElement
