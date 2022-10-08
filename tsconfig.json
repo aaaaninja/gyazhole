@@ -6,6 +6,9 @@
     "paths": {
       "~*": ["./*"]
     },
-    "baseUrl": "."
+    "baseUrl": ".",
+    "types": [
+      "vitest/importMeta"
+    ]
   }
 }
