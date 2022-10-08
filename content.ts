@@ -1,5 +1,5 @@
 import { finder } from "@medv/finder"
-import querySelectorAllWithHas from "~polyfill-css-has"
+import querySelectorAllWithHas from "~lib/polyfill-css-has"
 import type { PlasmoContentScript } from "plasmo"
 
 export const config: PlasmoContentScript = {
@@ -8,7 +8,7 @@ export const config: PlasmoContentScript = {
 }
 
 window.addEventListener("load", () => {
-    let isPressingQ = false // 任意のキーコンビネーションをやるため。
+    let isPressingQ = false // 任意のキーコンビネーションをやるため。(shiftやctrlとかだったらEventに含まれてるんだけどね......)
     document.addEventListener("keydown", e => isPressingQ = (e.key === "q"))
     document.addEventListener("keyup", () => isPressingQ = false)
 
@@ -32,5 +32,4 @@ window.addEventListener("load", () => {
 
 
   console.log("content script loaded")
-  document.body.style.background = "beige"
 })
