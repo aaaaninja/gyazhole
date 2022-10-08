@@ -1,5 +1,5 @@
 import { finder } from "@medv/finder"
-import querySelectorAllWithHas from "~lib/polyfill-css-has"
+import querySelectorAllWithHas from "~core/polyfill-css-has"
 import type { PlasmoContentScript } from "plasmo"
 
 export const config: PlasmoContentScript = {
