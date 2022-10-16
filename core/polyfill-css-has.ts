@@ -108,3 +108,24 @@ function filterNodeWithDirectDescendants(
     return child.matches(scrubDirectDescendantFromSelector(selector));
   });
 }
+
+if (import.meta.vitest) {
+  const { it, expect, beforeEach } = import.meta.vitest
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <article><img class="hoge" src="/hoge"></article>
+      <article><img class="fuga" src="/foge"></article>
+      <article><img class="piyo" src="/poge"></article>
+    `
+  })
+
+  it("query has 1", () => {
+    const actual = querySelectorAllWithHas('article:has(img.piyo)')
+    expect(actual.length).toBe(1)
+  })
+
+  it("query has all", () => {
+    const actual = querySelectorAllWithHas('article:has(img)')
+    expect(actual.length).toBe(3)
+  })
+}
