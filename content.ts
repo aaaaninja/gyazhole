@@ -13,18 +13,19 @@ window.addEventListener("load", () => {
     document.addEventListener("keyup", () => isPressingQ = false)
 
     document.addEventListener('click', (e) => {
-        const target = e.target as HTMLElement
-        if (!isPressingQ || target.tagName !== "IMG") { return }
+        if (!(e.target instanceof HTMLElement)) { console.log('not HTMLELEMENT!', e); return }
+
+        if (!isPressingQ || e.target.tagName !== "IMG") { return }
         e.stopPropagation()
         e.preventDefault()
 
-        const clickedElSelector = finder(target)
+        const clickedElSelector = finder(e.target)
         const tweetSelector = `article:has(${clickedElSelector})`
         const tweet = querySelectorAllWithHas(tweetSelector)
 
         console.log(isPressingQ)
         console.log(e)
-        console.log(target)
+        console.log(e.target)
         console.log(tweetSelector)
         console.log(tweet)
 
