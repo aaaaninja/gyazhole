@@ -11,7 +11,7 @@
  */
 export default function querySelectorAllWithHas(
   selector: string,
-  dom?: Element
+  dom?: Element,
 ): Node[] {
   const node = dom || document;
 
@@ -50,7 +50,7 @@ export function getHasInnerSelector(selector: string): string | Boolean {
  */
 export function getNodesInCurrentScope(
   dom: Element | Document,
-  selector: string
+  selector: string,
 ): NodeList {
   const currentScopeSelector = getCurrentScopeSelector(selector);
 
@@ -74,15 +74,13 @@ function getCurrentScopeSelector(selector: string): string {
  */
 export function filterNodesInScopeByHasSelector(
   nodes: NodeList,
-  selector: string
+  selector: string,
 ): Node[] {
   let method: Function;
 
-  method = selectorHasDirectDescendant(selector)
-    ? filterNodeWithDirectDescendants
-    : filterNode;
+  method = selectorHasDirectDescendant(selector) ? filterNodeWithDirectDescendants : filterNode;
 
-  return Array.from(nodes).filter(node => method(<Element>node, selector));
+  return Array.from(nodes).filter((node) => method(<Element> node, selector));
 }
 
 function selectorHasDirectDescendant(selector: string): Boolean {
@@ -102,30 +100,30 @@ function filterNode(node: Element, selector: string): Boolean {
 
 function filterNodeWithDirectDescendants(
   node: Element,
-  selector: string
+  selector: string,
 ): Boolean {
-  return Array.from((<Element>node).children).some(child => {
+  return Array.from((<Element> node).children).some((child) => {
     return child.matches(scrubDirectDescendantFromSelector(selector));
   });
 }
 
 if (import.meta.vitest) {
-  const { it, expect, beforeEach } = import.meta.vitest
+  const { it, expect, beforeEach } = import.meta.vitest;
   beforeEach(() => {
     document.body.innerHTML = `
       <article><img class="hoge" src="/hoge"></article>
       <article><img class="fuga" src="/foge"></article>
       <article><img class="piyo" src="/poge"></article>
-    `
-  })
+    `;
+  });
 
-  it("query has 1", () => {
-    const actual = querySelectorAllWithHas('article:has(img.piyo)')
-    expect(actual.length).toBe(1)
-  })
+  it('query has 1', () => {
+    const actual = querySelectorAllWithHas('article:has(img.piyo)');
+    expect(actual.length).toBe(1);
+  });
 
-  it("query has all", () => {
-    const actual = querySelectorAllWithHas('article:has(img)')
-    expect(actual.length).toBe(3)
-  })
+  it('query has all', () => {
+    const actual = querySelectorAllWithHas('article:has(img)');
+    expect(actual.length).toBe(3);
+  });
 }
