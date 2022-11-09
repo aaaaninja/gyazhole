@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
-    "test": "vitest"
+    "test": "vitest",
+    "lintfmt": "deno lint -c deno.jsonc && deno fmt -c deno.jsonc"
   },
   "dependencies": {
     "@medv/finder": "^2.1.0",
