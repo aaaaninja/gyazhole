@@ -1,6 +1,6 @@
 export function uploadToGyazo() {
   return false;
-};
+}
 
 if (import.meta.vitest) {
   const { it, expect } = import.meta.vitest;

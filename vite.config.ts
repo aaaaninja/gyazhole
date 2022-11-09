@@ -6,7 +6,7 @@ export default defineConfig({
     'import.meta.vitest': false,
   },
   test: {
-    includeSource: ['core/**/*.{js,ts}'],
+    includeSource: ['src/core/**/*.{js,ts}'],
     environment: 'happy-dom'
   }
 })
